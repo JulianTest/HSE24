@@ -1,0 +1,99 @@
+def buildVersions = [
+        compileSdk: 28,
+        buildTools: '28.0.3',
+        minSdk: 23,
+        targetSdk: 28
+]
+ext.buildVersions = buildVersions
+
+def versions = [
+        support: "1.0.0",
+        constraint_layout: "1.1.2",
+        android_arch: "2.0.0",
+        okhttp: "3.13.1",
+        retrofit: "2.4.0",
+        dagger: "2.21",
+        glide: "4.8.0",
+        kotlin: "1.3.20",
+        room: "2.0.0",
+
+        rxjava: "2.2.7",
+        rxkotlin: "2.3.0",
+        rxandroid: "2.1.1",
+
+]
+
+def deps = [:]
+
+def kotlin = [
+        stdlib: "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlin",
+        allopen: "org.jetbrains.kotlin:kotlin-allopen:$versions.kotlin",
+        test: "org.jetbrains.kotlin:kotlin-test-junit:$versions.kotlin",
+        gradle_plugin: "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
+]
+deps.kotlin = kotlin
+
+def support = [
+        annotations: "androidx.annotation:annotation:$versions.support",
+        app_compat: "androidx.appcompat:appcompat:$versions.support",
+        recyclerview: "androidx.recyclerview:recyclerview:$versions.support",
+        cardview: "androidx.cardview:cardview:$versions.support",
+        percentlayout: "androidx.percentlayout:percentlayout:$versions.support",
+        browser: "androidx.browser:browser:$versions.support",
+        design: "com.google.android.material:material:$versions.support",
+        support_v4: "androidx.legacy:legacy-support-v4:$versions.support",
+        core_utils: "androidx.legacy:legacy-support-core-utils:$versions.support",
+        core_ktx: "androidx.core:core-ktx:$versions.support"
+]
+deps.support = support
+
+def rx = [
+        android: "io.reactivex.rxjava2:rxandroid:$versions.rxandroid",
+        java: "io.reactivex.rxjava2:rxjava:$versions.rxjava",
+        kotlin: "io.reactivex.rxjava2:rxkotlin:$versions.rxkotlin",
+        permissions: "com.github.tbruyelle:rxpermissions:0.10.2@aar",
+]
+deps.rx = rx
+
+def room = [
+        runtime: "androidx.room:room-runtime:$versions.room",
+        compiler: "androidx.room:room-compiler:$versions.room",
+]
+deps.room = room
+
+def dagger = [
+        runtime: "com.google.dagger:dagger:$versions.dagger",
+        compiler: "com.google.dagger:dagger-compiler:$versions.dagger"
+]
+deps.dagger = dagger
+
+def okhttp = [
+        runtime: "com.squareup.okhttp3:okhttp:$versions.okhttp",
+        logging: "com.squareup.okhttp3:logging-interceptor:$versions.okhttp",
+        url_connection: "com.squareup.okhttp3:okhttp-urlconnection:$versions.okhttp"
+]
+deps.okhttp = okhttp
+
+def retrofit = [
+        runtime: "com.squareup.retrofit2:retrofit:$versions.retrofit",
+        gson: "com.squareup.retrofit2:converter-gson:$versions.retrofit",
+        rx_adapter: "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit",
+        sync_adapter: "com.jaredsburrows.retrofit:retrofit2-synchronous-adapter:0.5.0",
+]
+deps.retrofit = retrofit
+
+def glide = [
+        runtime: "com.github.bumptech.glide:glide:$versions.glide",
+        compiler: "com.github.bumptech.glide:compiler:$versions.glide",
+        annotations: "com.github.bumptech.glide:annotations:$versions.glide",
+        okhttp_loader: "com.github.bumptech.glide:okhttp3-integration:$versions.glide"
+]
+deps.glide = glide
+
+deps.gradle_plugin = "com.android.tools.build:gradle:3.3.2"
+deps.google_services = "com.google.gms:google-services:4.0.1"
+deps.constraint_layout = "androidx.constraintlayout:constraintlayout:$versions.constraint_layout"
+deps.timber = "com.jakewharton.timber:timber:4.7.1"
+
+
+ext.deps = deps
