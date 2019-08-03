@@ -21,6 +21,12 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity android:name=".presentation.product.ProductListActivity"
+                  android:screenOrientation="portrait"/>
+        <activity android:name=".presentation.product.ProductDetailsActivity"
+                  android:screenOrientation="portrait"/>
+        <activity android:name=".presentation.basket.BasketActivity"
+                  android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
