@@ -1,5 +1,6 @@
 package com.example.hse24.core.di
 
+import com.example.hse24.presentation.MainActivity
 import dagger.Component
 import javax.inject.Singleton
 
@@ -8,7 +9,10 @@ import javax.inject.Singleton
 @Component(
     modules = [
         (ApplicationModule::class),
-        (NetworkModule::class)
+        (NetworkModule::class),
+        (HseModule::class)
     ]
 )
-interface ApplicationComponent
+interface ApplicationComponent {
+    fun inject(mainActivity: MainActivity)
+}
