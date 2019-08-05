@@ -1,11 +1,10 @@
 package com.example.hse24.core.di
 
-import com.example.hse24.data.HseApi
-import com.example.hse24.data.HseFromNetwork
-import com.example.hse24.data.HseFromNetworkDataSource
+import com.example.hse24.data.*
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
+import javax.inject.Singleton
 
 
 @Module
@@ -20,5 +19,16 @@ class HseModule{
     internal fun provideHseFromNetwork(hseFromNetwork: HseFromNetwork): HseFromNetworkDataSource {
         return hseFromNetwork
     }
+
+    @Provides
+    @Singleton
+    internal fun provideBasket() = BasketDatabase()
+
+    @Provides
+    @Singleton
+    internal fun provideBaskteRepository(basketRepositoryImpl: BasketRepositoryImpl): BasketRepository = basketRepositoryImpl
+
+
+
 
 }

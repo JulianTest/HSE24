@@ -3,6 +3,7 @@ package com.example.hse24.presentation.product
 import com.example.hse24.core.usecases.safeDispose
 import com.example.hse24.core.usecases.withSchedulers
 import com.example.hse24.domain.GetProductListUseCase
+import com.example.hse24.domain.ProductListParams
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.plusAssign
 import io.reactivex.rxkotlin.subscribeBy
@@ -12,9 +13,10 @@ class ProductListPresenter @Inject constructor(private val getProductListUseCase
 
     private val disposable: CompositeDisposable by lazy { CompositeDisposable() }
     private lateinit var view: ProductListContract.View
+    private var currentPage = 1
     override fun onBind() {
         view.showLoading()
-        disposable += getProductListUseCase.invoke(view.getCategoryId()).withSchedulers().subscribeBy(onSuccess = {
+        disposable += getProductListUseCase.invoke(ProductListParams(view.getCategoryId(), currentPage)).withSchedulers().subscribeBy(onSuccess = {
             view.showContent()
             view.showProductList(it)
         }, onError = {

@@ -12,7 +12,7 @@ fun Activity.navigateToProductList(categoryId: Int){
     startActivity(intent)
 }
 
-fun Activity.navigateToProductDetails(productId: Int){
+fun Activity.navigateToProductDetails(productId: String){
     val intent = Intent(this, ProductDetailsActivity::class.java).apply {
         putExtra(ProductDetailsActivity.PRODUCT_ID, productId)
     }
