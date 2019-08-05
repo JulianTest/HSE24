@@ -8,9 +8,10 @@ interface ProductListContract{
     interface View: BaseView{
         fun getCategoryId(): Int
         fun showProductList(it: List<ProductInfo>)
+        fun addProducts(it: List<ProductInfo>)
 
     }
     interface Presenter: BasePresenter<View>{
-
+        fun loadMore()
     }
 }

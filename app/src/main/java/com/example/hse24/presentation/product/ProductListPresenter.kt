@@ -31,5 +31,13 @@ class ProductListPresenter @Inject constructor(private val getProductListUseCase
     override fun setView(baseView: ProductListContract.View) {
         view = baseView
     }
+    override fun loadMore(){
+        getProductListUseCase.invoke(ProductListParams(view.getCategoryId(),currentPage+1)).withSchedulers().subscribeBy(onSuccess = {
+            view.addProducts(it)
+            currentPage++
+        }, onError = {
+            //todo custom error so user can go on
+        })
+    }
 
 }

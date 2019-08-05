@@ -12,6 +12,7 @@ import javax.inject.Inject
 
 class BasketPresenter @Inject constructor(private val removeFromBasketUseCase: RemoveFromBasketUseCase,
                                           private val getBasketUseCase: GetBasketUseCase): BasketContract.Presenter{
+
     private val disposable: CompositeDisposable by lazy { CompositeDisposable() }
     private lateinit var view: BasketContract.View
     override fun onBind() {

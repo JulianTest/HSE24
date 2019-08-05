@@ -3,6 +3,7 @@ package com.example.hse24.presentation.product
 import android.os.Bundle
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.hse24.R
+import com.example.hse24.core.EndlessScrollListener
 import com.example.hse24.core.di.Injector
 import com.example.hse24.domain.models.ProductInfo
 import com.example.hse24.presentation.BaseActivity
@@ -11,6 +12,7 @@ import javax.inject.Inject
 
 class ProductListActivity : BaseActivity(), ProductListContract.View{
 
+    private lateinit var adapter: ProductListAdapter
     companion object{
         const val CATEGORY_ID = "category.id"
     }
@@ -39,8 +41,20 @@ class ProductListActivity : BaseActivity(), ProductListContract.View{
     }
 
     override fun showProductList(it: List<ProductInfo>) {
-        recyclerView.layoutManager = GridLayoutManager(this, 2)
-        recyclerView.adapter = ProductListAdapter(it)
+        val layoutManager = GridLayoutManager(this, 2)
+        recyclerView.layoutManager = layoutManager
+        adapter = ProductListAdapter(it)
+        recyclerView.adapter = adapter
+        recyclerView.addOnScrollListener(object : EndlessScrollListener(layoutManager){
+            override fun onLoadMore(totalItemsCount: Int) {
+                adapter.showLoading()
+                presenter.loadMore()
+            }
+        })
+    }
+
+    override fun addProducts(it: List<ProductInfo>) {
+        adapter.addProducts(it)
     }
 
 }

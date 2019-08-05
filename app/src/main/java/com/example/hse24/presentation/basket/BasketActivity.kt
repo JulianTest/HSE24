@@ -1,14 +1,11 @@
 package com.example.hse24.presentation.basket
 
 import android.os.Bundle
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hse24.R
 import com.example.hse24.core.di.Injector
 import com.example.hse24.domain.models.ProductDetails
-import com.example.hse24.domain.models.ProductInfo
 import com.example.hse24.presentation.BaseActivity
-import com.example.hse24.presentation.product.ProductListAdapter
 import kotlinx.android.synthetic.main.product_list_activity.*
 import javax.inject.Inject
 
@@ -34,9 +31,8 @@ class BasketActivity : BaseActivity(), BasketContract.View{
         presenter.onUnbind()
     }
     override fun showProducts(products: List<ProductDetails>) {
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        val layoutManager= LinearLayoutManager(this)
+        recyclerView.layoutManager = layoutManager
         recyclerView.adapter = BasketListAdapter(products)
-    }
-
-
+        }
 }
