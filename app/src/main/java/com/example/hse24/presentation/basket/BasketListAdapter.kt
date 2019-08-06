@@ -4,7 +4,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hse24.domain.models.ProductDetails
 
-class BasketListAdapter (private val productList: List<ProductDetails>): RecyclerView.Adapter<BasketItemViewHolder>(){
+class BasketListAdapter(private val productList: List<ProductDetails>) : RecyclerView.Adapter<BasketItemViewHolder>() {
+
+    //todo add swipe to delete or edit mode
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BasketItemViewHolder {
         return BasketItemViewHolder(parent)
     }

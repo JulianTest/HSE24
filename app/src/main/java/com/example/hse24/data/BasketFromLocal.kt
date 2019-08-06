@@ -5,7 +5,7 @@ import io.reactivex.Completable
 import io.reactivex.Single
 import javax.inject.Inject
 
-class BasketFromLocal @Inject constructor(private val basketDatabase: BasketDatabase): BasketFromLocalDataSource{
+class BasketFromLocal @Inject constructor(private val basketDatabase: BasketDatabase) : BasketFromLocalDataSource {
     override fun deleteFromBasket(productDetails: ProductDetails): Completable {
         return basketDatabase.removeFromBasket(productDetails)
     }

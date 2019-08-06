@@ -1,7 +1,7 @@
 package com.example.hse24.core
 
-import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 
 abstract class EndlessScrollListener constructor(private val layoutManager: LinearLayoutManager) :

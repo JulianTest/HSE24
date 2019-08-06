@@ -6,9 +6,10 @@ import com.example.hse24.domain.models.ProductDetails
 import io.reactivex.Completable
 import javax.inject.Inject
 
-class AddToBasketUseCase @Inject constructor(private val basketRepository: BasketRepository): CompletableUseCase<ProductDetails>(){
+class AddToBasketUseCase @Inject constructor(private val basketRepository: BasketRepository) :
+    CompletableUseCase<ProductDetails>() {
     override fun buildUseCaseCompletable(param: ProductDetails): Completable {
-       return basketRepository.addToBasket(param)
+        return basketRepository.addToBasket(param)
     }
 
 }

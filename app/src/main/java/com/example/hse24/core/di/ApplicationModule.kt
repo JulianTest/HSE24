@@ -8,7 +8,7 @@ import javax.inject.Singleton
 
 
 @Module
-class ApplicationModule(private val hseApplication: HseApplication){
+class ApplicationModule(private val hseApplication: HseApplication) {
     @Provides
     @Singleton
     internal fun provideContext(): Context {

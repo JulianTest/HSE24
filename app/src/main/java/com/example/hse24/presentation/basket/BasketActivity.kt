@@ -9,7 +9,7 @@ import com.example.hse24.presentation.BaseActivity
 import kotlinx.android.synthetic.main.product_list_activity.*
 import javax.inject.Inject
 
-class BasketActivity : BaseActivity(), BasketContract.View{
+class BasketActivity : BaseActivity(), BasketContract.View {
 
 
     override fun getLayoutResId(): Int {
@@ -23,6 +23,10 @@ class BasketActivity : BaseActivity(), BasketContract.View{
         super.onCreate(savedInstanceState)
         Injector.appComponent.inject(this)
         presenter.setView(this)
+    }
+
+    override fun onResume() {
+        super.onResume()
         presenter.onBind()
     }
 
@@ -30,9 +34,14 @@ class BasketActivity : BaseActivity(), BasketContract.View{
         super.onDestroy()
         presenter.onUnbind()
     }
+
     override fun showProducts(products: List<ProductDetails>) {
-        val layoutManager= LinearLayoutManager(this)
+        val layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = BasketListAdapter(products)
-        }
+    }
+
+    override fun retry() {
+        presenter.onBind()
+    }
 }

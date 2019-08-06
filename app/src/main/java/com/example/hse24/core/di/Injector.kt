@@ -2,7 +2,7 @@ package com.example.hse24.core.di
 
 import com.example.hse24.core.HseApplication
 
-object Injector{
+object Injector {
     private var appComponentImpl: ApplicationComponent? = null
 
 

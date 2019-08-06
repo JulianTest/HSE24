@@ -10,13 +10,15 @@ import io.reactivex.rxkotlin.plusAssign
 import io.reactivex.rxkotlin.subscribeBy
 import javax.inject.Inject
 
-class BasketPresenter @Inject constructor(private val removeFromBasketUseCase: RemoveFromBasketUseCase,
-                                          private val getBasketUseCase: GetBasketUseCase): BasketContract.Presenter{
+class BasketPresenter @Inject constructor(
+    private val removeFromBasketUseCase: RemoveFromBasketUseCase,
+    private val getBasketUseCase: GetBasketUseCase
+) : BasketContract.Presenter {
 
     private val disposable: CompositeDisposable by lazy { CompositeDisposable() }
     private lateinit var view: BasketContract.View
     override fun onBind() {
-       disposable += getBasketUseCase.invoke().withSchedulers().subscribeBy(onSuccess = {
+        disposable += getBasketUseCase.invoke().withSchedulers().subscribeBy(onSuccess = {
             view.showContent()
             view.showProducts(it)
         }, onError = {

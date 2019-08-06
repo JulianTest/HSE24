@@ -8,7 +8,7 @@ import javax.inject.Singleton
 
 
 @Module
-class HseModule{
+class HseModule {
 
     @Provides
     internal fun provideConfigApi(retrofit: Retrofit): HseApi {
@@ -26,9 +26,8 @@ class HseModule{
 
     @Provides
     @Singleton
-    internal fun provideBaskteRepository(basketRepositoryImpl: BasketRepositoryImpl): BasketRepository = basketRepositoryImpl
-
-
+    internal fun provideBaskteRepository(basketRepositoryImpl: BasketRepositoryImpl): BasketRepository =
+        basketRepositoryImpl
 
 
 }

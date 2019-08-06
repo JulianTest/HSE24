@@ -10,9 +10,10 @@ import com.example.hse24.presentation.BaseActivity
 import kotlinx.android.synthetic.main.product_details_activity.*
 import javax.inject.Inject
 
-class ProductDetailsActivity: BaseActivity(), ProductDetailsContract.View{
+class ProductDetailsActivity : BaseActivity(), ProductDetailsContract.View {
     @Inject
     lateinit var presenter: ProductDetailsPresenter
+
     override fun getProductId(): String {
         return intent.getStringExtra(PRODUCT_ID)
     }
@@ -21,14 +22,15 @@ class ProductDetailsActivity: BaseActivity(), ProductDetailsContract.View{
     override fun showProductDetails(productDetails: ProductDetails) {
         Glide.with(this).load(productDetails.imageUrl).into(image)
         name.text = productDetails.name
-        price.text = ""+productDetails.price
+        price.text = "" + productDetails.price
         description.text = productDetails.description
-        addBasket.setOnClickListener { presenter.addToBasket() }
+        addBasket.setOnClickListener { presenter.basketButtonClicked() }
     }
 
-    companion object{
-      const val PRODUCT_ID = "product.id"
+    companion object {
+        const val PRODUCT_ID = "product.id"
     }
+
     override fun getLayoutResId(): Int {
         return R.layout.product_details_activity
     }
@@ -45,13 +47,23 @@ class ProductDetailsActivity: BaseActivity(), ProductDetailsContract.View{
         presenter.onUnbind()
     }
 
-    override fun showBasketSuccess() {
-        //todo switch button to remove
-        Toast.makeText(this, "added to basket", Toast.LENGTH_LONG).show()
+    override fun showBasketSuccess(inBasket: Boolean) {
+        if (inBasket) Toast.makeText(this, "success adding to basket", Toast.LENGTH_LONG).show()
+        else Toast.makeText(this, "success removing from basket", Toast.LENGTH_LONG).show()
     }
 
     override fun showBasketError() {
-        Toast.makeText(this, "error adding to basket", Toast.LENGTH_LONG).show()
+        Toast.makeText(this, "error with basket", Toast.LENGTH_LONG).show()
     }
 
+
+    override fun setBasket(enabled: Boolean) {
+        if (enabled) {
+            addBasket.text = getString(R.string.add_basket)
+        } else addBasket.text = getString(R.string.remove_basket)
+    }
+
+    override fun retry() {
+        presenter.onBind()
+    }
 }

@@ -10,10 +10,11 @@ import com.example.hse24.presentation.BaseActivity
 import kotlinx.android.synthetic.main.product_list_activity.*
 import javax.inject.Inject
 
-class ProductListActivity : BaseActivity(), ProductListContract.View{
+class ProductListActivity : BaseActivity(), ProductListContract.View {
 
     private lateinit var adapter: ProductListAdapter
-    companion object{
+
+    companion object {
         const val CATEGORY_ID = "category.id"
     }
 
@@ -41,11 +42,17 @@ class ProductListActivity : BaseActivity(), ProductListContract.View{
     }
 
     override fun showProductList(it: List<ProductInfo>) {
-        val layoutManager = GridLayoutManager(this, 2)
-        recyclerView.layoutManager = layoutManager
         adapter = ProductListAdapter(it)
+        val layoutManager = GridLayoutManager(this, 2)
+        layoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+            override fun getSpanSize(position: Int): Int {
+                return if (adapter.getItemViewType(position) != ProductListAdapter.LOADING) 1
+                else 2
+            }
+        }
+        recyclerView.layoutManager = layoutManager
         recyclerView.adapter = adapter
-        recyclerView.addOnScrollListener(object : EndlessScrollListener(layoutManager){
+        recyclerView.addOnScrollListener(object : EndlessScrollListener(layoutManager) {
             override fun onLoadMore(totalItemsCount: Int) {
                 adapter.showLoading()
                 presenter.loadMore()
@@ -55,6 +62,10 @@ class ProductListActivity : BaseActivity(), ProductListContract.View{
 
     override fun addProducts(it: List<ProductInfo>) {
         adapter.addProducts(it)
+    }
+
+    override fun retry() {
+        presenter.onBind()
     }
 
 }

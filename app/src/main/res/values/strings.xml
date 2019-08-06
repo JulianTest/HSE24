@@ -5,4 +5,5 @@
     <string name="retry">Retry</string>
     <string name="to_basket">go to basket</string>
     <string name="add_basket">add to basket</string>
+    <string name="remove_basket">Remove from basket</string>
 </resources>

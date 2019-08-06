@@ -31,6 +31,9 @@ class MainActivity : BaseActivity(), CategoryContract.View {
         Injector.appComponent.inject(this)
         presenter.setView(this)
         presenter.onBind()
+        basketButton.setOnClickListener {
+            this.navigateToBasket()
+        }
     }
 
     override fun onDestroy() {
@@ -38,5 +41,7 @@ class MainActivity : BaseActivity(), CategoryContract.View {
         presenter.onUnbind()
     }
 
-
+    override fun retry() {
+        presenter.onBind()
+    }
 }

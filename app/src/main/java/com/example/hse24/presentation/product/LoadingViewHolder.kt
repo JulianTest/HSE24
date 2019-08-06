@@ -6,4 +6,4 @@ import com.example.hse24.R
 import com.example.hse24.core.inflate
 
 
-class LoadingViewHolder(parent: ViewGroup): RecyclerView.ViewHolder(parent.inflate(R.layout.loading))
+class LoadingViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(parent.inflate(R.layout.loading))

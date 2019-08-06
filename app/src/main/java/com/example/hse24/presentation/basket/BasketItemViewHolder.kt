@@ -10,12 +10,12 @@ import com.example.hse24.domain.models.ProductDetails
 import com.example.hse24.presentation.navigateToProductDetails
 import kotlinx.android.synthetic.main.product_item_view.view.*
 
-class BasketItemViewHolder (parent: ViewGroup): RecyclerView.ViewHolder(parent.inflate(R.layout.product_item_view)) {
+class BasketItemViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(parent.inflate(R.layout.product_item_view)) {
     fun bindTo(productInfo: ProductDetails) {
-        with(itemView){
+        with(itemView) {
             Glide.with(context).load(productInfo.imageUrl).into(image)
             name.text = productInfo.name
-            price.text = ""+productInfo.price +"Euro"
+            price.text = "" + productInfo.price + "Euro"
             itemView.setOnClickListener {
                 activityContext.navigateToProductDetails(productInfo.id)
             }

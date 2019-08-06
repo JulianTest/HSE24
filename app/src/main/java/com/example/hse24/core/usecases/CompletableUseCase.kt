@@ -22,7 +22,7 @@ abstract class CompletableUseCase<in Params> {
         disposables = CompositeDisposable().apply { add(completable.subscribeWith(observer)) }
     }
 
-    fun  Completable.withSchedulers(): Completable =
+    fun Completable.withSchedulers(): Completable =
         this.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
 
 }

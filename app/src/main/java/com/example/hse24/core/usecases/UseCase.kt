@@ -24,7 +24,9 @@ abstract class UseCase<T, in Params> {
         disposables = CompositeDisposable().apply { add(single.subscribeWith(observer)) }
     }
 }
+
 fun Disposable?.safeDispose() = this?.takeUnless { isDisposed }?.dispose()
 fun <T> Single<out T>.withSchedulers(): Single<out T> =
     this.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+
 operator fun <T> UseCase<T, Unit>.invoke(): Single<T> = this(Unit)

@@ -6,7 +6,8 @@ import com.example.hse24.domain.models.ProductDetails
 import io.reactivex.Completable
 import javax.inject.Inject
 
-class RemoveFromBasketUseCase @Inject constructor(private val basketRepository: BasketRepository): CompletableUseCase<ProductDetails>(){
+class RemoveFromBasketUseCase @Inject constructor(private val basketRepository: BasketRepository) :
+    CompletableUseCase<ProductDetails>() {
     override fun buildUseCaseCompletable(param: ProductDetails): Completable {
         return basketRepository.removeFromBasket(param)
     }

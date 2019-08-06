@@ -14,7 +14,7 @@ class GetCategoryTreeUseCase @Inject constructor(
     override fun buildUseCase(param: Unit): Single<List<SimpleCategory>> {
         return hseFromNetwork.categoryTree().map {
             val list = ArrayList<SimpleCategory>()
-            for (category in it.children){
+            for (category in it.children) {
                 list.add(category.toSimpleList())
                 addAll(list, category)
             }
@@ -24,9 +24,10 @@ class GetCategoryTreeUseCase @Inject constructor(
 
     //generate a simple List, so no complex category navigation is needed
     //bad UX but all functionality exists
-    private fun addAll(list: ArrayList<SimpleCategory>, parent: CategoryDto){
-        for (category in parent.children){
+    private fun addAll(list: ArrayList<SimpleCategory>, parent: CategoryDto) {
+        for (category in parent.children) {
             list.add(category.toSimpleList())
             addAll(list, category)
-        }    }
+        }
+    }
 }
